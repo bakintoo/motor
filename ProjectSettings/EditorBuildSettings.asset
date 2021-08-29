@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/GameFlow Templates/GF 2D - 1/Scenes/2 MENU-MotoCar.unity
+    guid: 0221407cf91799a4cb9f153d921b9e0e
+  - enabled: 1
+    path: Assets/GameFlow Templates/GF 2D - 1/Scenes/1 MENU-FlappyRunner.unity
+    guid: d6461c2906791414893e195e7875cd3b
+  - enabled: 1
+    path: Assets/GameFlow Templates/GF 2D - 1/Scenes/2D Car Endless.unity
+    guid: fe7514dc72c6d134584d984311604f37
+  - enabled: 1
+    path: Assets/GameFlow Templates/GF 2D - 1/Scenes/2D Moto Endless.unity
+    guid: f23adb23e6adcd941af6bf120464bed4
+  - enabled: 1
+    path: Assets/GameFlow Templates/GF 2D - 1/Scenes/2D Flappy.unity
+    guid: dd792499376a3174cab2eb891d1a9c19
+  - enabled: 1
+    path: Assets/GameFlow Templates/GF 2D - 1/Scenes/2D Runner.unity
+    guid: d4d2bc506a89a92438e52a12e5fbce99
+  - enabled: 1
+    path: Assets/GameFlow Templates/GF 2D - 2/Scenes/AngryBirds.unity
+    guid: 707c1f11954bc184c9ea159367ca17da
+  - enabled: 1
+    path: Assets/GameFlow Templates/GF 2D - 2/Scenes/Race2D.unity
+    guid: c97b01d90254327428c098a2bd285e06
+  m_configObjects: {}
