@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - caja
+  - Fire
   layers:
   - Default
   - TransparentFX
@@ -16,8 +17,8 @@ TagManager:
   - 
   - fondo
   - vehiculo
-  - 
-  - 
+  - moto
+  - moto_wheel
   - 
   - 
   - 

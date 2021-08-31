@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MotoCotroller : MonoBehaviour {
 
-	public float speed = 1500f;
+	private float speed;
 	public WheelJoint2D backwheel;
 
 
@@ -16,6 +16,14 @@ public class MotoCotroller : MonoBehaviour {
 	}
 	void FixedUpdate()
 	{
+        if (Input.GetAxisRaw("Vertical") < 0)
+        {
+            speed = 500f;
+        }
+        else speed = 700f;
+
+
+
 		movement = Input.GetAxisRaw ("Vertical")*speed;
 
 		if (movement == 0) {
@@ -23,7 +31,7 @@ public class MotoCotroller : MonoBehaviour {
 		} else
 		{
 			backwheel.useMotor = true;
-			JointMotor2D ourMotor = new JointMotor2D{ motorSpeed = movement, maxMotorTorque = 10000 };
+			JointMotor2D ourMotor = new JointMotor2D{ motorSpeed = -movement, maxMotorTorque = 10000 };
 			backwheel.motor = ourMotor;
 			
 		}
