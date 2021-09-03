@@ -6,6 +6,7 @@ TagManager:
   tags:
   - caja
   - Fire
+  - Map
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - vehiculo
   - moto
   - moto_wheel
-  - 
+  - RayCastPoints
   - 
   - 
   - 

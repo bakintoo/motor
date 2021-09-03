@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class ScrWheel : MonoBehaviour
 {
-    public  Rigidbody2D rb;
+    private  Rigidbody2D rb;
     [Header("Suspension")]
-    public float restLenght, springTravel, springStifness;
-    private float minLenght, maxLenght, springLenght, springForce;
+    public float restLenght, springTravel, springStifness, damperStifness;
+    private float minLenght, maxLenght, springLenght, springForce, lastLenght, damperForce, springVelocity;
     private Vector2 suspensionForce;
+    RaycastHit2D hit;
 
     [Header("Wheels")]
     public float wheelRedius;
@@ -16,20 +17,31 @@ public class ScrWheel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        rb = transform.root.GetComponent<Rigidbody2D>();
+
         minLenght = restLenght - springTravel;
         maxLenght = restLenght + springTravel;
 
     }
 
-    // Update is called once per frame
+    // Update is called once per frame 
     void FixedUpdate()
     {
-        if(Physics.Raycast(transform.position, -transform.up, out RaycastHit hit, maxLenght + wheelRedius))
+        hit = Physics2D.Raycast(transform.position, -transform.up, maxLenght + wheelRedius);
+       if (hit && hit.transform.gameObject.tag == "Map")
         {
-            print("i hit");
+           // Debug.DrawRay(transform.position, -transform.up, Color.red, 0.5f);
+
+            lastLenght = springLenght;
             springLenght = hit.distance - wheelRedius;
+            springLenght = Mathf.Clamp(springLenght, minLenght, maxLenght);
+            springVelocity = (lastLenght - springLenght) / Time.fixedDeltaTime;
             springForce = springStifness * (restLenght - springLenght);
-            suspensionForce = springForce * transform.up;
+            damperForce = damperStifness * springVelocity;
+            suspensionForce = (springForce + damperForce) * transform.up;
+           // print(suspensionForce);
+
+
             rb.AddForceAtPosition(suspensionForce, hit.point);
         }
     }
