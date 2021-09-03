@@ -13,6 +13,8 @@ public class ScrWheel : MonoBehaviour
 
     [Header("Wheels")]
     public float wheelRedius;
+    private Vector2 wheelVelocityLS;
+    private float fX;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +23,10 @@ public class ScrWheel : MonoBehaviour
 
         minLenght = restLenght - springTravel;
         maxLenght = restLenght + springTravel;
+
+    }
+    void Update()
+    {
 
     }
 
@@ -39,10 +45,14 @@ public class ScrWheel : MonoBehaviour
             springForce = springStifness * (restLenght - springLenght);
             damperForce = damperStifness * springVelocity;
             suspensionForce = (springForce + damperForce) * transform.up;
-           // print(suspensionForce);
+            // print(suspensionForce);
+
+            wheelVelocityLS = transform.InverseTransformDirection(rb.GetPointVelocity(hit.point));
+            fX = Input.GetAxis("Vertical") * springForce;
 
 
-            rb.AddForceAtPosition(suspensionForce, hit.point);
+            rb.AddForceAtPosition(suspensionForce + (new Vector2(transform.right.x, transform.right.y) * fX), hit.point);
+            print(transform.right * fX);
         }
     }
 }
