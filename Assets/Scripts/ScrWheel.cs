@@ -50,7 +50,7 @@ public class ScrWheel : MonoBehaviour
             wheelVelocityLS = transform.InverseTransformDirection(rb.GetPointVelocity(hit.point));
             fX = Input.GetAxis("Vertical") * springForce;
 
-
+            if((suspensionForce + (new Vector2(transform.right.x, transform.right.y) * fX), hit.point).point.y < 0)
             rb.AddForceAtPosition(suspensionForce + (new Vector2(transform.right.x, transform.right.y) * fX), hit.point);
             print(transform.right * fX);
         }
