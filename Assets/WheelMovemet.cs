@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class WheelMovemet : MonoBehaviour
 {
-    public float speed;
+    enum WheelState { front, back};
+    [SerializeField] WheelState wheelState;
+    public float speed, rotationSpeed;
     float movement;
     Rigidbody2D rb;
     bool isGrounded;
+
+    private float rotation;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,9 +20,23 @@ public class WheelMovemet : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!isGrounded) return;
-        movement = Input.GetAxisRaw("Vertical") * speed;
+        //if (!isGrounded) return;
+        movement = Input.GetAxisRaw("Horizontal") * speed;
+       rotation = Input.GetAxis("Horizontal") * rotationSpeed;
+
+
         rb.AddForce(new Vector2(movement, 0));
+
+      /*  if(wheelState == WheelState.front && rotation > 0)
+        {
+            rb.AddForce(new Vector2(0, rotation));
+        }
+        else if (wheelState == WheelState.back && rotation < 0)
+        {
+            rb.AddForce(new Vector2(0, -rotation));
+        } */ 
+
+
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -31,4 +49,5 @@ public class WheelMovemet : MonoBehaviour
 
         isGrounded = false;
     }
+
 }
